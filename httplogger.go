@@ -1,6 +1,11 @@
 package httplog
 
 
+import (
+	"net/http"
+)
+
+
 type HttpLogger interface {
 	Fatal(...interface{})
 	Fatalf(string, ...interface{})
@@ -14,30 +19,30 @@ type HttpLogger interface {
 	Printf(string, ...interface{})
 	Println(...interface{})
 
-	BadRequest()
-	Unauthorized()
-	PaymentRequired()
-	Forbidden()
-	NotFound()
-	MethodNotAllowed()
-	NotAcceptable()
-	ProxyAuthRequired()
-	RequestTimeout()
-	Conflict()
-	Gone()
-	LengthRequired()
-	PreconditionFailed()
-	RequestEntityTooLarge()
-	RequestURITooLong()
-	UnsupportedMediaType()
-	RequestedRangeNotSatisfiable()
-	ExpectationFailed()
-	Teapot()
+	BadRequest(http.ResponseWriter)
+	Unauthorized(http.ResponseWriter)
+	PaymentRequired(http.ResponseWriter)
+	Forbidden(http.ResponseWriter)
+	NotFound(http.ResponseWriter)
+	MethodNotAllowed(http.ResponseWriter)
+	NotAcceptable(http.ResponseWriter)
+	ProxyAuthRequired(http.ResponseWriter)
+	RequestTimeout(http.ResponseWriter)
+	Conflict(http.ResponseWriter)
+	Gone(http.ResponseWriter)
+	LengthRequired(http.ResponseWriter)
+	PreconditionFailed(http.ResponseWriter)
+	RequestEntityTooLarge(http.ResponseWriter)
+	RequestURITooLong(http.ResponseWriter)
+	UnsupportedMediaType(http.ResponseWriter)
+	RequestedRangeNotSatisfiable(http.ResponseWriter)
+	ExpectationFailed(http.ResponseWriter)
+	Teapot(http.ResponseWriter)
 
-	InternalServerError()
-	StatusNotImplemented()
-	StatusBadGateway()
-	ServiceUnavailable()
-	GatewayTimeout()
-	HTTPVersionNotSupported()
+	InternalServerError(http.ResponseWriter)
+	NotImplemented(http.ResponseWriter)
+	BadGateway(http.ResponseWriter)
+	ServiceUnavailable(http.ResponseWriter)
+	GatewayTimeout(http.ResponseWriter)
+	HTTPVersionNotSupported(http.ResponseWriter)
 }
