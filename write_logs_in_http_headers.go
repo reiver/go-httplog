@@ -1,6 +1,12 @@
 package httplog
 
 
+import (
+
+	"net/http"
+)
+
+
 func (httplogger *internalHttpLogger) writeLogsInHttpHeaders(w http.ResponseWriter) {
 
 	header := w.Header()
