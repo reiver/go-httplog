@@ -9,6 +9,10 @@ import (
 
 func (httplogger *internalHttpLogger) setLogsInHttpHeaders(w http.ResponseWriter) {
 
+	if ! httplogger.dumpLogs {
+		return
+	}
+
 	header := w.Header()
 
 	for i, logMessage := range httplogger.logs {
