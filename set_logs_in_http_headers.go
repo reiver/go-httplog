@@ -7,7 +7,7 @@ import (
 )
 
 
-func (httplogger *internalHttpLogger) writeLogsInHttpHeaders(w http.ResponseWriter) {
+func (httplogger *internalHttpLogger) setLogsInHttpHeaders(w http.ResponseWriter) {
 
 	header := w.Header()
 
