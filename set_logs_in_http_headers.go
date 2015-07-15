@@ -2,7 +2,7 @@ package httplog
 
 
 import (
-
+	"fmt"
 	"net/http"
 )
 
@@ -11,7 +11,9 @@ func (httplogger *internalHttpLogger) setLogsInHttpHeaders(w http.ResponseWriter
 
 	header := w.Header()
 
-	for _, logMessage := range httplogger.logs {
-		header.Set("X-Log", logMessage)
+	for i, logMessage := range httplogger.logs {
+		headerName := fmt.Sprintf("X-Log.%d", 1+i)
+
+		header.Set(headerName, logMessage)
 	}
 }
