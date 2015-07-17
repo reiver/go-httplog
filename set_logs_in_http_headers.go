@@ -16,7 +16,7 @@ func (httplogger *internalHttpLogger) setLogsInHttpHeaders(w http.ResponseWriter
 	header := w.Header()
 
 	for i, logMessage := range httplogger.logs {
-		headerName := fmt.Sprintf("X-Log.%d", 1+i)
+		headerName := fmt.Sprintf("X-Log.%03d", 1+i)
 
 		header.Set(headerName, logMessage)
 	}
