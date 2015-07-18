@@ -6,6 +6,21 @@ import (
 )
 
 
+// HttpLogger is the interface that represents what an 'http logger' looks like.
+//
+// The New func returns an HttpLogger interface (rather than the underlying
+// struct).
+//
+// The HttpLogger interface includes 9 methods that are exactly the same as Go's
+// built-in "log" library. Namely: Fatal, Fatalf, Fatalln, Panic, Panicf, Panicln,
+// Print, Printf and Println.
+//
+// The HttpLogger interface also includes 25 methods (that the Go's built-in log
+// library does NOT have) that makes it easier to return an 4xx or 5xx HTTP responses.
+//
+// For example, a "404 Not Found" corresponds to the NotFound method, a "500 Internal
+// Server Error" corresponds to the InternalServerError method, and a "408 Request
+// Timeout" corresponds to the RequestTimeout. Etc.
 type HttpLogger interface {
 	Fatal(...interface{})
 	Fatalf(string, ...interface{})
