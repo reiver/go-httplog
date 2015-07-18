@@ -52,11 +52,24 @@ Then in the header of the HTTP response sent with any of the 25 methods (that ma
 HTTP response), such as InternalServerError, NotFound, Unauthorized, NotImplemented, etc, you will get the logs dumped
 using HTTP response headers that look like:
 
-	x-Log.000: ServeHTTP() BEGIN
-	x-Log.001: ServeHTTP() Received, subject = "This weekend?"
-	x-Log.002: ServeHTTP() Received, body    = "Hey,\nLet's go to White Pine this weekend. Ok?"
-	x-Log.003: ServeHTTP() Received, to      = ""
-	x-Log.004: ServeHTTP() user_id = 5
-	x-Log.005: ServeHTTP() Client Error: "to" is empty but is NOT allowed to be.
+	X-Log.000: ServeHTTP() BEGIN
+	X-Log.001: ServeHTTP() Received, subject = "This weekend?"
+	X-Log.002: ServeHTTP() Received, body    = "Hey,\nLet's go to White Pine this weekend. Ok?"
+	X-Log.003: ServeHTTP() Received, to      = ""
+	X-Log.004: ServeHTTP() user_id = 5
+	X-Log.005: ServeHTTP() Client Error: "to" is empty but is NOT allowed to be.
+
+Or, for a better example of these headers, what it would look like with other HTTP response headers is:
+
+	Content-Type: application/json
+	Date: Wed, 15 Jul 2015 07:47:03 GMT
+	Expires: Thu, 19 Nov 1981 08:52:00 GMT
+	X-Log.000: ServeHTTP() BEGIN
+	X-Log.001: ServeHTTP() Received, subject = "This weekend?"
+	X-Log.002: ServeHTTP() Received, body    = "Hey,\nLet's go to White Pine this weekend. Ok?"
+	X-Log.003: ServeHTTP() Received, to      = ""
+	X-Log.004: ServeHTTP() user_id = 5
+	X-Log.005: ServeHTTP() Client Error: "to" is empty but is NOT allowed to be.
+
 */
 package httplog
