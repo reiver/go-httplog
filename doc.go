@@ -6,7 +6,7 @@ built-in "log" package. Namely: Fatal, Fatalf, Fatalln, Panic, Panicf, Panicln, 
 
 So, for example, you are able to do things such as:
 
-	func (handler *internalHandler) ServeHTTP(w ResponseWriter, r *Request) {
+	func (handler *internalHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		
 		httplogger := httplog.New(io.Writer, true)
 		
@@ -20,11 +20,11 @@ So, for example, you are able to do things such as:
 Which should be very familiar to anyone who has used Go's built in "log" package.
 
 However, httplog also provides 25 methods (that the Go's built-in "log" package does NOT have) that makes it
-easier to return an 4xx or 5xx HTTP response.
+easier to return a 4xx or 5xx HTTP response.
 
 So, for example, you are able to do things such as:
 
-	func (handler *internalHandler) ServeHTTP(w ResponseWriter, r *Request) {
+	func (handler *internalHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		
 		httplogger := httplog.New(io.Writer, true)
 		
@@ -38,6 +38,11 @@ So, for example, you are able to do things such as:
 		
 		// ...
 	}
+
+The usage of the InternalServerError method in the example (as well as any of the other 24 of the 25 methods
+that make it easier to return a 4xx or 5xx HTTP response) will completely deal with send the HTTP response
+over the 'http.ResponseWriter'.
+
 
 */
 package httplog
