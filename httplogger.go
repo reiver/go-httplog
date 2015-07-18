@@ -16,7 +16,7 @@ import (
 // Print, Printf and Println.
 //
 // The HttpLogger interface also includes 25 methods (that the Go's built-in log
-// library does NOT have) that makes it easier to return an 4xx or 5xx HTTP responses.
+// library does NOT have) that makes it easier to return an 4xx or 5xx HTTP response.
 //
 // For example, a "404 Not Found" corresponds to the NotFound method, a "500 Internal
 // Server Error" corresponds to the InternalServerError method, and a "408 Request
