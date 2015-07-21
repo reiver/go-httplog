@@ -6,18 +6,10 @@ import (
 )
 
 
-func (httpLogger *internalHttpLogger) PreconditionFailed(w http.ResponseWriter) {
+func (httpLogger *internalHttpLogger) PreconditionFailed(w http.ResponseWriter, cascade ...interface{}) {
 
 	httpStatusCode := http.StatusPreconditionFailed
 	httpStatusName :=  StatusNamePreconditionFailed
 
-	datum := struct{
-		StatusCode int    `json:"status_code"`
-		StatusName string `json:"status_name"`
-	}{
-		StatusCode:    httpStatusCode,
-		StatusName: httpStatusName,
-	}
-
-	httpLogger.writeJsonHttpResponse(w, httpStatusCode, datum)
+	httpLogger.jsonHttpResponse(w, httpStatusCode, httpStatusName, cascade...)
 }

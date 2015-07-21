@@ -6,18 +6,10 @@ import (
 )
 
 
-func (httpLogger *internalHttpLogger) RequestEntityTooLarge(w http.ResponseWriter) {
+func (httpLogger *internalHttpLogger) RequestEntityTooLarge(w http.ResponseWriter, cascade ...interface{}) {
 
 	httpStatusCode := http.StatusRequestEntityTooLarge
 	httpStatusName :=  StatusNameRequestEntityTooLarge
 
-	datum := struct{
-		StatusCode int    `json:"status_code"`
-		StatusName string `json:"status_name"`
-	}{
-		StatusCode:    httpStatusCode,
-		StatusName: httpStatusName,
-	}
-
-	httpLogger.writeJsonHttpResponse(w, httpStatusCode, datum)
+	httpLogger.jsonHttpResponse(w, httpStatusCode, httpStatusName, cascade...)
 }

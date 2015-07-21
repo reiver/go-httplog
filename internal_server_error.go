@@ -6,18 +6,10 @@ import (
 )
 
 
-func (httpLogger *internalHttpLogger) InternalServerError(w http.ResponseWriter) {
+func (httpLogger *internalHttpLogger) InternalServerError(w http.ResponseWriter, cascade ...interface{}) {
 
 	httpStatusCode := http.StatusInternalServerError
 	httpStatusName :=  StatusNameInternalServerError
 
-	datum := struct{
-		StatusCode int    `json:"status_code"`
-		StatusName string `json:"status_name"`
-	}{
-		StatusCode:    httpStatusCode,
-		StatusName: httpStatusName,
-	}
-
-	httpLogger.writeJsonHttpResponse(w, httpStatusCode, datum)
+	httpLogger.jsonHttpResponse(w, httpStatusCode, httpStatusName, cascade...)
 }

@@ -6,18 +6,10 @@ import (
 )
 
 
-func (httpLogger *internalHttpLogger) ServiceUnavailable(w http.ResponseWriter) {
+func (httpLogger *internalHttpLogger) ServiceUnavailable(w http.ResponseWriter, cascade ...interface{}) {
 
 	httpStatusCode := http.StatusServiceUnavailable
 	httpStatusName :=  StatusNameServiceUnavailable
 
-	datum := struct{
-		StatusCode int    `json:"status_code"`
-		StatusName string `json:"status_name"`
-	}{
-		StatusCode:    httpStatusCode,
-		StatusName: httpStatusName,
-	}
-
-	httpLogger.writeJsonHttpResponse(w, httpStatusCode, datum)
+	httpLogger.jsonHttpResponse(w, httpStatusCode, httpStatusName, cascade...)
 }
