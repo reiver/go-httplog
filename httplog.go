@@ -20,8 +20,8 @@ type internalHttpLogger struct {
 // The 'writer' parameter tells New where the logs should
 // be written to, as part of its normal logging operations.
 //
-// The 'dumpLogs' parameter tells New whether the 25 methods for
-// generating 4xx and 5xx HTTP responses should dump the (past) logs
+// The 'dumpLogs' parameter tells New whether the 26 methods for
+// generating 2xx, 4xx and 5xx HTTP responses should dump the (past) logs
 // that the 'http logger' has seen.
 //
 // One would NOT want to dump these log in a 'production' deployment

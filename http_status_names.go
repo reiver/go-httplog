@@ -2,6 +2,8 @@ package httplog
 
 
 const (
+	StatusNameOK                           = "OK" // 200
+
 	StatusNameBadRequest                   = "Bad Request"
 	StatusNameUnauthorized                 = "Unauthorized"
 	StatusNamePaymentRequired              = "Payment Required"

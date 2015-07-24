@@ -153,6 +153,14 @@ func doTest(t *testing.T, httpStatusCode int, httpStatusName string, fn func(Htt
 
 
 
+func TestOK(t *testing.T) {
+	fn := func(httplogger HttpLogger, w http.ResponseWriter) {
+		httplogger.OK(w)
+	}
+
+	doTest(t, http.StatusOK, StatusNameOK, fn)
+}
+
 func TestBadGateway(t *testing.T) {
 	fn := func(httplogger HttpLogger, w http.ResponseWriter) {
 		httplogger.BadGateway(w)

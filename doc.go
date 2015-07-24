@@ -19,8 +19,8 @@ So, for example, you are still able to do things such as:
 
 Which should be very familiar to anyone who has used Go's built in "log" package.
 
-However, httplog also provides 25 methods (that Go's built-in "log" package does NOT have) that makes it
-easier to return a 4xx or 5xx HTTP response.
+However, httplog also provides 26 methods (that Go's built-in "log" package does NOT have) that makes it
+easier to return a 2xx, 4xx or 5xx HTTP response.
 
 So, for example, you are able to do things such as:
 
@@ -39,8 +39,8 @@ So, for example, you are able to do things such as:
 		// ...
 	}
 
-The usage of the InternalServerError method in this example (as well as any of the other 24 of the 25 methods
-that make it easier to return a 4xx or 5xx HTTP response) will completely deal with sending the HTTP response
+The usage of the InternalServerError method in this example (as well as any of the other 25 of the 26 methods
+that make it easier to return a 2xx, 4xx or 5xx HTTP response) will completely deal with sending the HTTP response
 over the 'http.ResponseWriter'.
 
 The other important feature is that if the 'http logger' was created with its 'dumpLogs' parameters set to 'true'.
@@ -48,7 +48,7 @@ So, for example:
 
 	httplogger := httplog.New(os.Stdout, true)
 
-Then in the header of the HTTP response sent with any of the 25 methods (that make it easier to return a 4xx or 5xx
+Then in the header of the HTTP response sent with any of the 26 methods (that make it easier to return a 2xx, 4xx or 5xx
 HTTP response), such as InternalServerError, NotFound, Unauthorized, NotImplemented, etc, you will get the logs dumped
 using HTTP response headers that look like:
 

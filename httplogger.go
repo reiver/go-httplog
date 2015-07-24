@@ -16,8 +16,8 @@ import (
 // built-in "log" library. Namely: Fatal, Fatalf, Fatalln, Panic, Panicf, Panicln,
 // Print, Printf and Println.
 //
-// The HttpLogger interface also includes 25 methods (that the Go's built-in log
-// library does NOT have) that makes it easier to return an 4xx or 5xx HTTP response.
+// The HttpLogger interface also includes 26 methods (that the Go's built-in log
+// library does NOT have) that makes it easier to return an 2xx, 4xx or 5xx HTTP response.
 //
 // For example, a "404 Not Found" corresponds to the NotFound method, a "500 Internal
 // Server Error" corresponds to the InternalServerError method, and a "408 Request
@@ -34,6 +34,8 @@ type HttpLogger interface {
 	Print(...interface{})
 	Printf(string, ...interface{})
 	Println(...interface{})
+
+	OK(http.ResponseWriter, ...interface{})
 
 	BadRequest(http.ResponseWriter, ...interface{})
 	Unauthorized(http.ResponseWriter, ...interface{})
