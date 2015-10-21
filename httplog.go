@@ -7,7 +7,7 @@ import (
 
 
 type internalHttpLogger struct {
-	writer   io.Writer
+	logger   Logger
 	logs   []string
 	dumpLogs bool
 }
@@ -32,13 +32,24 @@ type internalHttpLogger struct {
 // indeed want to dump these logs (to make debugging easier). And in that case
 // 'dumpLogs' should be given a value of 'true'.
 func New(writer io.Writer, dumpLogs bool) HttpLogger {
+
+	logger := newWriterLogger(writer)
+
+	httpLogger := Wrap(logger, dumpLogs)
+
+	return httpLogger
+}
+
+
+
+func Wrap(logger Logger, dumpLogs bool) HttpLogger {
 	logs := make([]string, 0, 16)
 
-	httplogger := internalHttpLogger{
-		writer:   writer,
+	httpLogger := internalHttpLogger{
+		logger:   logger,
 		logs:     logs,
 		dumpLogs: dumpLogs,
 	}
 
-	return &httplogger
+	return &httpLogger
 }

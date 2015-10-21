@@ -8,19 +8,24 @@ import (
 
 func (httpLogger *internalHttpLogger) Panic(v ...interface{}) {
 
-	httpLogger.Print(v...)
-	panic(fmt.Sprint(v...))
+	msg := fmt.Sprint(v...)
+	httpLogger.logs = append(httpLogger.logs, msg)
+
+	httpLogger.Panic(v...)
 }
 
 func (httpLogger *internalHttpLogger) Panicf(format string, v ...interface{}) {
 
-	httpLogger.Printf(format, v...)
-	panic(fmt.Sprintf(format, v...))
+	msg := fmt.Sprintf(format, v...)
+	httpLogger.logs = append(httpLogger.logs, msg)
+
+	httpLogger.Panicf(format, v...)
 }
 
 func (httpLogger *internalHttpLogger) Panicln(v ...interface{}) {
 
-	httpLogger.Println(v...)
-	panic(fmt.Sprintln(v...))
-}
+	msg := fmt.Sprintln(v...)
+	httpLogger.logs = append(httpLogger.logs, msg)
 
+	httpLogger.Panicln(v...)
+}
