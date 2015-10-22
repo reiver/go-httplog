@@ -7,7 +7,7 @@ import (
 
 
 type internalHttpLogger struct {
-	logger   Logger
+	logger   extendedLogger
 	logs   []string
 	dumpLogs bool
 }
@@ -45,8 +45,13 @@ func New(writer io.Writer, dumpLogs bool) HttpLogger {
 func Wrap(logger Logger, dumpLogs bool) HttpLogger {
 	logs := make([]string, 0, 16)
 
+	extLogger, ok := logger.(extendedLogger)
+	if !ok {
+		extLogger = newAdaptor(logger)
+	}
+
 	httpLogger := internalHttpLogger{
-		logger:   logger,
+		logger:   extLogger,
 		logs:     logs,
 		dumpLogs: dumpLogs,
 	}

@@ -22,3 +22,25 @@ type Logger interface {
 	Printf(string, ...interface{})
 	Println(...interface{})
 }
+
+
+
+type extendedLogger interface {
+	Logger
+
+	Debug(...interface{})
+	Debugf(string, ...interface{})
+	Debugln(...interface{})
+
+	Error(...interface{})
+	Errorf(string, ...interface{})
+	Errorln(...interface{})
+
+	Trace(...interface{})
+	Tracef(string, ...interface{})
+	Traceln(...interface{})
+
+	Warn(...interface{})
+	Warnf(string, ...interface{})
+	Warnln(...interface{})
+}

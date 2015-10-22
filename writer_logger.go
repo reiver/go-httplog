@@ -13,7 +13,7 @@ type internalWriterLogger struct {
 }
 
 
-func newWriterLogger(writer io.Writer) Logger {
+func newWriterLogger(writer io.Writer) extendedLogger {
 
 	logger := internalWriterLogger{
 		writer: writer,
@@ -40,6 +40,40 @@ func (logger *internalWriterLogger) Println(v ...interface{}) {
 
 	msg := fmt.Sprintln(v...)
 	fmt.Fprintln(logger.writer, msg)
+}
+
+
+
+func (logger *internalWriterLogger) Debug(v ...interface{}) {
+
+	logger.Print(v...)
+}
+
+func (logger *internalWriterLogger) Debugf(format string, v ...interface{}) {
+
+	logger.Printf(format, v...)
+}
+
+func (logger *internalWriterLogger) Debugln(v ...interface{}) {
+
+	logger.Println(v...)
+}
+
+
+
+func (logger *internalWriterLogger) Error(v ...interface{}) {
+
+	logger.Print(v...)
+}
+
+func (logger *internalWriterLogger) Errorf(format string, v ...interface{}) {
+
+	logger.Printf(format, v...)
+}
+
+func (logger *internalWriterLogger) Errorln(v ...interface{}) {
+
+	logger.Println(v...)
 }
 
 
@@ -80,5 +114,39 @@ func (logger *internalWriterLogger) Panicln(v ...interface{}) {
 
 	logger.Println(v...)
 	panic(fmt.Sprintln(v...))
+}
+
+
+
+func (logger *internalWriterLogger) Warn(v ...interface{}) {
+
+	logger.Print(v...)
+}
+
+func (logger *internalWriterLogger) Warnf(format string, v ...interface{}) {
+
+	logger.Printf(format, v...)
+}
+
+func (logger *internalWriterLogger) Warnln(v ...interface{}) {
+
+	logger.Println(v...)
+}
+
+
+
+func (logger *internalWriterLogger) Trace(v ...interface{}) {
+
+	logger.Print(v...)
+}
+
+func (logger *internalWriterLogger) Tracef(format string, v ...interface{}) {
+
+	logger.Printf(format, v...)
+}
+
+func (logger *internalWriterLogger) Traceln(v ...interface{}) {
+
+	logger.Println(v...)
 }
 

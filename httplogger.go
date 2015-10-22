@@ -23,6 +23,14 @@ import (
 // Server Error" corresponds to the InternalServerError method, and a "408 Request
 // Timeout" corresponds to the RequestTimeout. Etc.
 type HttpLogger interface {
+	Debug(...interface{})
+	Debugf(string, ...interface{})
+	Debugln(...interface{})
+
+	Error(...interface{})
+	Errorf(string, ...interface{})
+	Errorln(...interface{})
+
 	Fatal(...interface{})
 	Fatalf(string, ...interface{})
 	Fatalln(...interface{})
@@ -34,6 +42,14 @@ type HttpLogger interface {
 	Print(...interface{})
 	Printf(string, ...interface{})
 	Println(...interface{})
+
+	Trace(...interface{})
+	Tracef(string, ...interface{})
+	Traceln(...interface{})
+
+	Warn(...interface{})
+	Warnf(string, ...interface{})
+	Warnln(...interface{})
 
 	OK(http.ResponseWriter, ...interface{})
 
