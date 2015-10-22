@@ -32,6 +32,10 @@ func (httpLogger *internalHttpLogger) jsonHttpResponse(w http.ResponseWriter, ht
 			for key, value := range xx {
 				datum[key] = value
 			}
+		case map[string]int:
+			for key, value := range xx {
+				datum[key] = value
+			}
 		case string:
 			datum["text"] = xx
 		}
