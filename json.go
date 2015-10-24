@@ -19,26 +19,14 @@ func (httpLogger *internalHttpLogger) jsonHttpResponse(w http.ResponseWriter, ht
 	// Write the HTTP headers in the response, with the specified HTTP response code.
 	w.WriteHeader(httpStatusCode)
 
-	// Deal with datum.
-	datum := make(map[string]interface{})
+	// Collapse the cascade.
+	data := collapse(cascade...)
 
-	for _,x := range cascade {
-		switch xx := x.(type) {
-		case map[string]interface{}:
-			for key, value := range xx {
-				datum[key] = value
-			}
-		case map[string]string:
-			for key, value := range xx {
-				datum[key] = value
-			}
-		case string:
-			datum["text"] = xx
-		}
-	}
-
-	datum["status_code"] = httpStatusCode
-	datum["status_name"] = httpStatusName
+	// Add the basic fields.
+	//
+	// These fields correspond to the HTTP response status code and name..
+	data["status_code"] = httpStatusCode
+	data["status_name"] = httpStatusName
 
 	// Write out the JSON response.
 	jsonEncoder := json.NewEncoder(w)
@@ -46,7 +34,7 @@ func (httpLogger *internalHttpLogger) jsonHttpResponse(w http.ResponseWriter, ht
 		return
 	}
 
-	if err := jsonEncoder.Encode(datum); nil != err {
+	if err := jsonEncoder.Encode(data); nil != err {
 		return
 	}
 }

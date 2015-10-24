@@ -107,7 +107,7 @@ func doTest(t *testing.T, httpStatusCode int, httpStatusName string, fn func(Htt
 		// Note that because of the way we split the logs, we will actually get one extra line!
 		// Because the last "\n" will create an extra empty line.
 		// So we need len(test.Logs) == len(logLines)-1
-		// Althuogh we correct this, dumping the last line.
+		// Although we correct this, dumping the last line.
 		logLines := strings.Split(buffer.String(), "\n")
 		logLines = logLines[0:len(logLines)-1]
 
