@@ -132,6 +132,16 @@ func collapseReflectedStruct(reflectedStruct reflect.Value) map[string]interface
 		fieldType := typeOfValue.Field(i)
 		fieldTypeTag := fieldType.Tag
 		key := fieldTypeTag.Get("json")
+
+		//if its unexported field
+		if fieldType.PkgPath != "" {
+			continue
+		}
+		//if json tags asks you to ignore the field
+		if "-" == key {
+			continue
+		}
+
 		if "" == key {
 			key = fieldType.Name
 		}
